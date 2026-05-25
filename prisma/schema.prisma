@@ -1,0 +1,56 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Account {
+  id           String        @id @default(cuid())
+  name         String
+  type         String
+  balance      Float         @default(0)
+  currency     String        @default("MXN")
+  color        String        @default("#6366f1")
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[]
+}
+
+model Category {
+  id           String        @id @default(cuid())
+  name         String
+  type         String
+  icon         String        @default("tag")
+  color        String        @default("#6366f1")
+  transactions Transaction[]
+}
+
+model Transaction {
+  id          String    @id @default(cuid())
+  amount      Float
+  description String
+  type        String
+  date        DateTime  @default(now())
+  accountId   String
+  categoryId  String?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  account     Account   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category    Category? @relation(fields: [categoryId], references: [id])
+}
+
+model Budget {
+  id         String   @id @default(cuid())
+  name       String
+  amount     Float
+  spent      Float    @default(0)
+  period     String
+  categoryId String?
+  startDate  DateTime
+  endDate    DateTime
+  createdAt  DateTime @default(now())
+}
