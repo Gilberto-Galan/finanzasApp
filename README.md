@@ -4,7 +4,7 @@ Aplicación web para gestionar ingresos, gastos, cuentas y presupuestos personal
 
 ## 🖥️ Demo
 
-![Dashboard](public/screenshots/dashboard.png)
+<img width="1262" height="862" alt="Image" src="https://github.com/user-attachments/assets/2355457b-8210-4066-89c3-670f416201dc" />
 
 ## ✨ Funcionalidades
 
